@@ -59,7 +59,18 @@ if __name__ == '__main__':
     try:
         main()
     except HTTPError as exc:
-        print('Damnlines HTTP error: ' + str(exc.code), file=sys.stderr)
+        try:
+            envelope = json.loads(exc.read(4096))
+            detail = envelope.get('error', {})
+            safe = {'http_status': exc.code, 'code': detail.get('code'),
+                    'message': detail.get('message'), 'request_id': detail.get('request_id')}
+            token = os.environ.get('DAMNLINES_API_KEY', '').strip()
+            message = json.dumps(safe)
+            if token:
+                message = message.replace(token, '[redacted]')
+            print('Damnlines API response: ' + message, file=sys.stderr)
+        except Exception:
+            print('Damnlines HTTP error: ' + str(exc.code), file=sys.stderr)
         sys.exit(1)
     except (URLError, TimeoutError):
         print('Damnlines connection unavailable', file=sys.stderr)
