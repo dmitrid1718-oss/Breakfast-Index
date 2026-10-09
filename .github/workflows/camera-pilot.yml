@@ -1,0 +1,47 @@
+name: Breakfast camera pilot
+on:
+  push:
+    paths:
+      - 'tools/**'
+      - '.github/workflows/camera-pilot.yml'
+  workflow_dispatch:
+  schedule:
+    # UTC range covers 6/7/8 AM across US mainland, Alaska and Hawaii.
+    # The script checks each camera's IANA timezone, including DST.
+    - cron: '0 10-18 * * *'
+permissions:
+  contents: read
+concurrency:
+  group: breakfast-camera-pilot
+  cancel-in-progress: false
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install CPU detector
+        run: |
+          pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
+          pip install -r tools/requirements.txt
+      - name: Verify zero and missing-data rules
+        run: python -m unittest discover -s tools -p 'test_*.py' -v
+      - name: Scheduled local-time capture
+        if: github.event_name == 'schedule'
+        run: python tools/index_tool.py run
+      - name: Immediate pilot test
+        if: github.event_name != 'schedule'
+        run: python tools/index_tool.py test roscoe-test
+      - name: Save pictures and counts for tuning
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: camera-pilot-${{ github.run_id }}
+          path: |
+            private-captures/
+            data/breakfast.json
+          retention-days: 7
+          if-no-files-found: warn

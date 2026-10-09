@@ -1,0 +1,17 @@
+{
+  "cameras": [
+    {
+      "id": "roscoe-test",
+      "enabled": true,
+      "test_only": true,
+      "timezone": "America/New_York",
+      "url": "http://72.10.204.97:83/axis-cgi/jpg/image.cgi",
+      "source_page": "https://theroscoediner.secureserversites.net/",
+      "polygon": [[0.12, 0.76], [0.8, 0.58], [0.99, 0.63], [0.73, 0.84], [0.13, 0.92]],
+      "confidence": 0.4,
+      "classes": ["car", "truck"],
+      "model": "yolo11n.pt",
+      "notes": "Test only. View includes charging spaces; not a validated breakfast queue. Camera clock discrepancy observed. Automated reuse terms not confirmed."
+    }
+  ]
+}
