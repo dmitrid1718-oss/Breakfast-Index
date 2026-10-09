@@ -27,6 +27,11 @@ def get(path, **params):
     return json.loads(body)
 
 def main():
+    # Separate API reachability from bearer authorization.
+    health_req = Request('https://api.damnlines.com/v1/health', headers={'Accept': 'application/json'})
+    with build_opener(NoRedirect).open(health_req, timeout=20) as response:
+        health = json.loads(response.read(65536))
+    print('API_HEALTH ' + str(health.get('status')), flush=True)
     # Test required data scope directly; /me may need a separate metadata scope.
     locations = get('locations').get('data')
     print('AUTHENTICATED; locations access granted')
