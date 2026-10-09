@@ -2,16 +2,12 @@
 
 The economy before the numbers.
 
-A static, responsive experiment by Useless Instruments. One chart with Day / Week / Month and Line / Candles selectors.
+A small experiment following visible breakfast vehicle counts from a limited sample of locations. It is not a nationally representative or official economic measure.
 
-## Run
+## Data path
 
-Serve this directory with any static web server, for example `python3 -m http.server 8000`, then open http://localhost:8000.
+The camera tool checks configured public still-image URLs at 6, 7, and 8 a.m. in each camera's local time. It saves each image and an annotated vehicle count for review. Cameras begin in test or review mode; only enabled, validated cameras can contribute approved counts.
 
-No dependencies or build step are required. Deploy the repository root as a static site.
+Approved counts are written to `data/readings.json`, a count-only history ledger. The same run updates `data/breakfast.json`, which the static chart reads. Images stay in short-lived GitHub Actions artifacts and are not published in the repository. A clear image with no vehicles is recorded as zero. Missing or stale images are not converted to zero.
 
-## Data status
-
-The page currently displays an honest empty state. Camera collection, scheduled reports, and numerical chart rendering are not connected. The chart selectors change the chosen view and empty-state labels; they do not generate readings.
-
-Planned observation window: 6–9 a.m. local time across a sample of U.S. regions. Average visible vehicle counts across usable images. Missing images are excluded, never recorded as zero. No synthetic observations.
+See [`tools/PILOT.md`](tools/PILOT.md) for setup, review, and calibration steps.

@@ -10,7 +10,7 @@ on:
     # The script checks each camera's IANA timezone, including DST.
     - cron: '0 10-18 * * *'
 permissions:
-  contents: read
+  contents: write
 concurrency:
   group: breakfast-camera-pilot
   cancel-in-progress: false
@@ -45,3 +45,13 @@ jobs:
             data/breakfast.json
           retention-days: 7
           if-no-files-found: warn
+      - name: Publish count-only chart data
+        if: github.event_name == 'schedule' && success()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/readings.json data/breakfast.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update verified Breakfast Index readings"
+            git push
+          fi

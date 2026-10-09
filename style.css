@@ -4,5 +4,4 @@
 .trademark{font-size:.2em;font-weight:400;line-height:1;letter-spacing:0;vertical-align:top;display:inline-block;margin-top:.2em;margin-left:.25em;color:var(--muted)}
 
 header{justify-content:flex-end;min-height:80px}.footer-link{color:var(--muted);text-decoration:none}.footer-link:hover{color:var(--ink);text-decoration:underline}@media(max-width:760px){header{min-height:66px}.edition{max-width:none;text-align:right}}
-
-.title-first{position:relative;display:inline-block}.title-first .trademark{position:absolute;top:-.22em;left:100%;margin:0 0 0 .15em;font-size:.18em;vertical-align:initial}@media(max-width:760px){h1{font-size:clamp(48px,16.8vw,78px)}}
+.empty[hidden]{display:none}.data-viz{position:absolute;inset:24px 0 46px;width:100%;height:calc(100% - 70px);overflow:visible}.viz-grid{stroke:#343637;stroke-width:1}.viz-line{fill:none;stroke:var(--accent);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}.viz-point{fill:var(--accent);stroke:#191b1d;stroke-width:2}.viz-wick{stroke:var(--accent);stroke-width:2}.viz-candle{fill:var(--accent);stroke:var(--accent);stroke-width:1}

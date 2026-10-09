@@ -30,6 +30,10 @@ python tools/index_tool.py export
 
 Zero is valid and included. Missing, unreadable and unreviewed readings are excluded. Each location averages its available 6/7/8 counts, then locations get equal weight. The export includes coverage and completeness. Empty data produces an empty series, never fabricated zeroes. Missing dates should remain gaps in any chart. This measures vehicles visible at observation times, not total cars served.
 
-`data/breakfast.json` is the chart-ready export. Workflow artifacts retain each run's evidence for seven days; they are not a persistent production history store. The current pilot does not combine different workflow runs, automatically approve counts, or publish to the page. The `watch` command keeps history locally across runs. Before production, establish reliable camera views, validate their counts, and connect durable history and publication.
+`data/readings.json` is the durable count-only ledger; `data/breakfast.json` is the chart-ready export. Scheduled GitHub runs append approved counts to those files and commit them. Images and annotated evidence remain in seven-day Actions artifacts and are not committed to the public repository.
+
+New cameras start with automatic approval off. Set `auto_approve: true` only after checking the saved originals and annotated counts across several real mornings. If the camera lacks a fresh `Last-Modified` header, also set `frame_freshness_verified: true` only after verifying that source during setup. A stale header always blocks automatic approval. Test-only cameras and unreviewed counts never enter the ledger. The tool treats zero as a valid count; failed, stale, unreadable, and missing images do not become zero. Manual review with `--count 0` is supported.
+
+The chart reads `data/breakfast.json`. Line view shows each daily average. Candles use the per-location average at 6 a.m. as open, 8 a.m. as close, and the observed 6/7/8 values for high and low. Day, week, and month select the latest 1, 7, or 30 available dates. Gaps remain gaps.
 
 Ultralytics code/model licensing applies (AGPL-3.0 or an appropriate commercial license); see https://www.ultralytics.com/license. No paid AI API or API key is used. Standard GitHub-hosted runners are free for this public repository; artifacts have their own storage allowances. Keep evidence small and retention short.
