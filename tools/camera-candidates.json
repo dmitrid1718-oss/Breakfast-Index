@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "purpose": "Discovery register for the Breakfast Index camera pilot. A nearby road camera is not a drive-through camera unless the queue is clearly visible. Nothing in this file is enabled for collection.",
+  "decision_rule": "Only promote a camera after a current image shows the drive-through lane and queue clearly, a repeatable image endpoint is available, and source reuse terms permit scheduled capture and analysis.",
+  "cameras": [
+    {
+      "id": "hyrum-ut-main-street",
+      "location": "Hyrum, Utah",
+      "source_page": "https://spotcameras.com/en/cams/United-States/Utah/41029-Hyrum-Cache-County-Utah-USA-View-of-McDonald%E2%80%99s-on-the-main-street-in-the-city",
+      "image_url": "https://prod-ut.ibi511.com/map/Cctv/67829",
+      "timezone": "America/Denver",
+      "status": "reviewed-not-queue-validated",
+      "view": "Official UDOT still image shows Main St and the McDonald’s area; timestamp was current at 06:31 MDT during review. The drive-through lane was not clearly identifiable in frame.",
+      "index_eligible": false
+    },
+    {
+      "id": "dry-ridge-ky-i75-broadway",
+      "location": "Dry Ridge, Kentucky",
+      "source_page": "https://spotcameras.com/en/cams/United-States/Kentucky/46987-Dry-Ridge-Grant-County-Kentucky-USA-View-of-the-Interstate-75-and-Broadway-St-near-McDonald-s",
+      "official_source": "https://goky.ky.gov/",
+      "timezone": "America/New_York",
+      "status": "pending-frame-review",
+      "view": "Listing describes I-75/Broadway near McDonald’s. No direct still endpoint or drive-through view verified.",
+      "index_eligible": false
+    },
+    {
+      "id": "saugerties-ny-i87-ny212",
+      "location": "Saugerties, New York",
+      "source_page": "https://spotcameras.com/en/cams/United-States/New-York/41301-Saugerties-Ulster-County-New-York-USA-View-of-Interstate-I-87-from-the-viaduct-on-New-York-State-Route-212-near-McDonald-s-restaurant",
+      "official_source": "https://511ny.org/",
+      "timezone": "America/New_York",
+      "status": "nearby-road-only",
+      "view": "I-87/NY-212 traffic view near the restaurant; drive-through lane not established.",
+      "index_eligible": false
+    },
+    {
+      "id": "saugerties-ny-thruway-exit20",
+      "location": "Saugerties, New York",
+      "source_page": "https://www.thruway.ny.gov/travelers/map/text/twytextcameras.cgi?region=ALML",
+      "timezone": "America/New_York",
+      "status": "pending-camera-identification",
+      "view": "Regional Thruway camera directory; exact Exit 20 camera and view need verification.",
+      "index_eligible": false
+    },
+    {
+      "id": "cadiz-ky-us68-wkdz",
+      "location": "Cadiz, Kentucky",
+      "source_page": "https://camguide.net/usa/kentucky/cadiz/gas/",
+      "official_source": "https://www.youtube.com/",
+      "timezone": "America/Chicago",
+      "status": "store-in-frame-queue-unverified",
+      "view": "Listing says McDonald’s at 5878 Hopkinsville Rd appears beside US-68 traffic. Does not establish that the drive-through queue is visible.",
+      "index_eligible": false
+    },
+    {
+      "id": "ironwood-mi-copper-cup-nest",
+      "location": "Ironwood, Michigan",
+      "source_page": "https://coppercup.coffee/live-cam/",
+      "stream_url": "https://video.nest.com/live/OAjonuwSET",
+      "timezone": "America/Chicago",
+      "status": "owner-described-view-stream-unavailable-for-review",
+      "view": "Camera owner says it faces west toward McDonald’s. The public Nest player rendered a blank frame during review; image angle and automated reuse terms remain unverified.",
+      "index_eligible": false
+    },
+    {
+      "id": "times-square-ny-earthcam",
+      "location": "New York, New York",
+      "source_page": "https://www.earthcam.com/cams/newyork/timessquare/",
+      "timezone": "America/New_York",
+      "status": "broad-city-cam-not-queue",
+      "view": "Square view; no specific McDonald’s drive-through lane established. EarthCam requires permission for automated capture/rebroadcast.",
+      "index_eligible": false
+    },
+    {
+      "id": "bourbon-street-la-earthcam",
+      "location": "New Orleans, Louisiana",
+      "source_page": "https://www.earthcam.com/usa/louisiana/neworleans/bourbonstreet/",
+      "timezone": "America/Chicago",
+      "status": "broad-city-cam-not-queue",
+      "view": "Street view near Canal Street; no drive-through view established. EarthCam permission required before automated use.",
+      "index_eligible": false
+    },
+    {
+      "id": "las-vegas-strip-earthcam",
+      "location": "Las Vegas, Nevada",
+      "source_page": "https://www.earthcam.com/usa/nevada/lasvegas/",
+      "timezone": "America/Los_Angeles",
+      "status": "broad-city-cam-not-queue",
+      "view": "Multiple broad Strip views; no restaurant queue view established. EarthCam permission required before automated use.",
+      "index_eligible": false
+    },
+    {
+      "id": "fremont-street-earthcam",
+      "location": "Las Vegas, Nevada",
+      "source_page": "https://www.earthcam.com/",
+      "timezone": "America/Los_Angeles",
+      "status": "camera-not-identified",
+      "view": "Network homepage rather than a specific Fremont Street feed. No drive-through view established.",
+      "index_eligible": false
+    },
+    {
+      "id": "santa-monica-pier-earthcam",
+      "location": "Santa Monica, California",
+      "source_page": "https://www.earthcam.com/usa/california/santamonica/",
+      "timezone": "America/Los_Angeles",
+      "status": "broad-city-cam-not-queue",
+      "view": "Pier view; no drive-through view established. EarthCam permission required before automated use.",
+      "index_eligible": false
+    },
+    {
+      "id": "chicago-earthcam",
+      "location": "Chicago, Illinois",
+      "source_page": "https://www.earthcam.com/usa/illinois/chicago/",
+      "timezone": "America/Chicago",
+      "status": "broad-city-cam-not-queue",
+      "view": "Broad skyline/city views; no specific McDonald’s queue established. EarthCam permission required before automated use.",
+      "index_eligible": false
+    },
+    {
+      "id": "keysers-ridge-md-chart",
+      "location": "Keysers Ridge, Maryland",
+      "source_page": "https://chart.maryland.gov/",
+      "timezone": "America/New_York",
+      "status": "pending-camera-identification",
+      "view": "Official highway camera directory; exact I-68/US-219 camera and McDonald’s queue visibility need verification.",
+      "index_eligible": false
+    },
+    {
+      "id": "tigard-or-ore99w-mcdonald",
+      "location": "Tigard, Oregon",
+      "source_page": "https://www.traffic-cams.com/world/webcam/feed1459258540didkey565376",
+      "timezone": "America/Los_Angeles",
+      "status": "name-ambiguity",
+      "view": "ORE99W at McDonald may refer to a road/intersection name. No restaurant view or queue verified.",
+      "index_eligible": false
+    }
+  ],
+  "directories": [
+    {
+      "name": "TrafficVision map",
+      "url": "https://trafficvision.live/map",
+      "type": "camera directory; individual views need review"
+    },
+    {
+      "name": "MileCheck highway cameras",
+      "url": "https://milecheckapp.com/cameras/",
+      "type": "camera directory; individual views need review"
+    },
+    {
+      "name": "511NY",
+      "url": "https://511ny.org/",
+      "type": "traffic camera directory"
+    },
+    {
+      "name": "GoKY",
+      "url": "https://goky.ky.gov/",
+      "type": "traffic camera directory"
+    },
+    {
+      "name": "UDOT 511",
+      "url": "https://prod-ut.ibi511.com/",
+      "type": "traffic camera directory"
+    },
+    {
+      "name": "SeeTheView U.S. camera index",
+      "url": "https://seetheview.com/cams/country/us",
+      "type": "scenic/city camera directory"
+    }
+  ]
+}
