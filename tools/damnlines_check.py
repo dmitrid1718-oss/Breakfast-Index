@@ -27,9 +27,9 @@ def get(path, **params):
     return json.loads(body)
 
 def main():
-    me = get('me')
-    print(json.dumps({'connection': 'authenticated', 'tier': me.get('tier')}, ensure_ascii=True))
+    # Test required data scope directly; /me may need a separate metadata scope.
     locations = get('locations').get('data')
+    print('AUTHENTICATED; locations access granted')
     if not isinstance(locations, list):
         raise ValueError('Unexpected locations response')
     print('LOCATIONS ' + str(len(locations)), flush=True)
@@ -53,7 +53,7 @@ def main():
             'window': '06:00-09:00', 'has_morning_record': bool(rows),
             'sample': [{k: row.get(k) for k in ('captured_at', 'people_count')} for row in rows[:1]]}),
             flush=True)
-    print('People counts only. No chart publication performed.')
+    print('Counts are people in queues. No chart publication performed.')
 
 if __name__ == '__main__':
     try:
