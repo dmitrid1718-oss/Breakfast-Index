@@ -18,16 +18,14 @@
       <section class="intro" aria-labelledby="title">
         <div class="eyebrow">THE MORNING, OBSERVED.</div>
         <h1 id="title"><span class="title-first">Breakfast<sup class="trademark">™</sup></span><span class="title-second">Index<span class="period">.</span></span></h1>
-        <div class="intro-copy"><h2>The economy<br>before the numbers.</h2><p>Before the reports arrive, the day begins.<br class="desktop-break"> A small experiment following breakfast activity across U.S. regions. One daily average. One morning at a time.</p></div>
+        <div class="intro-copy"><h2>The economy<br>before the numbers.</h2><p>Before the reports arrive, the day begins.<br class="desktop-break"> A small basket of real economic measurements. Prices, wages, and consumer confidence—observed over time.</p></div>
       </section>
-      <section class="chart-section" aria-labelledby="chart-title">
-        <div class="chart-heading"><div><h2 id="chart-title">The daily breakfast average</h2><p>6–9 A.M. LOCAL TIME · U.S. REGIONS</p></div><span class="status">AWAITING FIRST READINGS</span></div>
-        <div class="chart-toolbar"><div class="control-group" role="group" aria-label="Chart time range"><button type="button" data-range="Day" aria-pressed="false">Day</button><button type="button" data-range="Week" aria-pressed="true">Week</button><button type="button" data-range="Month" aria-pressed="false">Month</button></div><div class="control-group style-controls" role="group" aria-label="Chart style"><button type="button" data-style="Line" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m2 14 5-6 5 3 6-7"/></svg>Line</button><button type="button" data-style="Candles" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 2v4m0 8v4m8-16v7m0 5v4M4 6h4v8H4zM12 9h4v5h-4z"/></svg>Candles</button></div></div>
-        <figure class="chart" aria-label="Breakfast Index weekly line chart. No verified readings are available yet.">
-          <div class="grid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-          <div class="empty"><span class="empty-symbol" aria-hidden="true">—</span><h3>A new day. A new instrument.</h3><p id="chart-message" aria-live="polite">This week’s readings will appear here.</p><span class="empty-note">NO VERIFIED DATA YET</span></div>
-          <figcaption><span id="chart-view">WEEK · LINE</span><span id="chart-detail">MORNING ACTIVITY</span></figcaption>
-        </figure>
+      <section class="main-index-section" aria-labelledby="main-index-title">
+        <div class="chart-heading"><div><h2 id="main-index-title">Breakfast purchasing power</h2><p>HOURLY EARNINGS / RESTAURANT-FOOD PRICES · JAN 2025 = 100</p></div><span id="main-index-status" class="status">READING SOURCE DATA</span></div>
+        <div class="chart-toolbar"><div class="control-group" role="group" aria-label="Main index date range"><button type="button" data-main-range="6" aria-pressed="false">6 months</button><button type="button" data-main-range="12" aria-pressed="true">1 year</button><button type="button" data-main-range="all" aria-pressed="false">All</button></div><span id="main-index-value" class="main-index-value">—</span></div>
+        <div id="main-index-plot" class="main-index-plot" role="img" aria-label="Historical restaurant food purchasing power"></div>
+        <div class="main-index-bottom"><span id="main-index-date">Awaiting official monthly observations</span><span>100 = JANUARY 2025 PURCHASING POWER</span></div>
+        <p class="main-index-method">A small, repeatable index—not a literal national breakfast receipt. We divide average private-sector hourly earnings by the official restaurant-food price index, then compare the result with January 2025. Higher means an hour of work buys more restaurant food. Updated when new BLS readings arrive; no estimates for missing months. <a href="https://fred.stlouisfed.org/series/CES0500000003" target="_blank" rel="noopener noreferrer">Wages ↗</a> · <a href="https://fred.stlouisfed.org/series/CUSR0000SEFV" target="_blank" rel="noopener noreferrer">Food prices ↗</a></p>
       </section>
 
       <section class="sentiment-section" aria-labelledby="sentiment-title">
@@ -61,11 +59,21 @@
         </div></div>
         <div class="basket-result"><span>MINUTES OF TAKE-HOME PAY / BREAKFAST</span><strong id="minutes-result">—</strong><span>ESTIMATED BREAKFASTS IN A FIVE-DAY WEEK</span><strong id="days-result">—</strong><div id="days-bar" class="days-bar" aria-hidden="true"></div><p>Five purchased breakfasts would cost <b id="week-cost"></b> per week. Illustrative 40-hour workweek; household obligations are not modeled. These are scenarios, not measured national affordability rates.</p></div>
       </section>
+      <section class="chart-section pilot-section" aria-labelledby="chart-title">
+        <div class="chart-heading"><div><h2 id="chart-title">Morning activity · experimental pilot</h2><p>6–9 A.M. LOCAL TIME · U.S. REGIONS</p></div><span class="status">AWAITING FIRST READINGS</span></div>
+        <div class="chart-toolbar"><div class="control-group" role="group" aria-label="Chart time range"><button type="button" data-range="Day" aria-pressed="false">Day</button><button type="button" data-range="Week" aria-pressed="true">Week</button><button type="button" data-range="Month" aria-pressed="false">Month</button></div><div class="control-group style-controls" role="group" aria-label="Chart style"><button type="button" data-style="Line" aria-pressed="true"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m2 14 5-6 5 3 6-7"/></svg>Line</button><button type="button" data-style="Candles" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 2v4m0 8v4m8-16v7m0 5v4M4 6h4v8H4zM12 9h4v5h-4z"/></svg>Candles</button></div></div>
+        <figure class="chart" aria-label="Breakfast Index weekly line chart. No verified readings are available yet.">
+          <div class="grid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="empty"><span class="empty-symbol" aria-hidden="true">—</span><h3>A new day. A new instrument.</h3><p id="chart-message" aria-live="polite">This week’s readings will appear here.</p><span class="empty-note">NO VERIFIED DATA YET</span></div>
+          <figcaption><span id="chart-view">WEEK · LINE</span><span id="chart-detail">MORNING ACTIVITY</span></figcaption>
+        </figure>
+      </section>
       <aside class="disclaimer" aria-label="Disclaimer"><span>SMALL PRINT</span><p>Breakfast Index is an independent experiment based on a limited sample of locations, not a nationally representative measure. It is not an official economic measure, an economic forecast, or financial advice. Readings may be incomplete or revised. Sentiment and confidence surveys are not direct affordability measures; their scales are not comparable. No affiliation with any restaurant or brand.</p></aside>
     </main>
     <footer><span>A USELESS INSTRUMENT. A USEFUL QUESTION.</span><a class="footer-link" href="https://uselessinstruments.com">© 2026 Useless Instruments LLC</a></footer>
   </div>
   <script src="/chart.js"></script>
+  <script src="/main-index.js"></script>
   <script src="/economic.js"></script>
 </body>
 </html>
