@@ -2,6 +2,11 @@ name: Update Breakfast Index data
 on:
   schedule:
     - cron: '23 15 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'tools/update_purchasing_power.py'
+      - '.github/workflows/update-economic-data.yml'
   workflow_dispatch:
 permissions:
   contents: write
@@ -23,6 +28,7 @@ jobs:
         run: python tools/update_purchasing_power.py
       - name: Commit only changed readings
         run: |
+          git add -N data/purchasing-power.json
           if git diff --quiet -- data/purchasing-power.json; then
             echo 'No updates'
             exit 0
