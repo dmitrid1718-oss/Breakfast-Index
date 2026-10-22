@@ -1,0 +1,144 @@
+{
+  "metric": "restaurant_food_purchasing_power_proxy",
+  "label": "Restaurant-food purchasing power",
+  "base": "2025-01",
+  "base_value": 100,
+  "frequency": "monthly",
+  "description": "Average private-sector hourly earnings divided by CPI food away from home, normalized to 100 in January 2025; not a national breakfast menu-price index or household disposable income measure.",
+  "latest_observation": "2026-09",
+  "updated_utc": "2026-10-22T15:06:26+00:00",
+  "source": [
+    {
+      "id": "CES0500000003",
+      "label": "BLS average hourly earnings, total private",
+      "url": "https://fred.stlouisfed.org/series/CES0500000003"
+    },
+    {
+      "id": "CUSR0000SEFV",
+      "label": "BLS CPI food away from home, seasonally adjusted",
+      "url": "https://fred.stlouisfed.org/series/CUSR0000SEFV"
+    }
+  ],
+  "points": [
+    {
+      "month": "2025-01",
+      "value": 100.0,
+      "wage_hourly": 35.84,
+      "restaurant_cpi": 375.532
+    },
+    {
+      "month": "2025-02",
+      "value": 99.891,
+      "wage_hourly": 35.94,
+      "restaurant_cpi": 376.991
+    },
+    {
+      "month": "2025-03",
+      "value": 99.999,
+      "wage_hourly": 36.11,
+      "restaurant_cpi": 378.363
+    },
+    {
+      "month": "2025-04",
+      "value": 99.586,
+      "wage_hourly": 36.12,
+      "restaurant_cpi": 380.039
+    },
+    {
+      "month": "2025-05",
+      "value": 99.715,
+      "wage_hourly": 36.28,
+      "restaurant_cpi": 381.228
+    },
+    {
+      "month": "2025-06",
+      "value": 99.538,
+      "wage_hourly": 36.36,
+      "restaurant_cpi": 382.75
+    },
+    {
+      "month": "2025-07",
+      "value": 99.564,
+      "wage_hourly": 36.47,
+      "restaurant_cpi": 383.808
+    },
+    {
+      "month": "2025-08",
+      "value": 99.687,
+      "wage_hourly": 36.62,
+      "restaurant_cpi": 384.909
+    },
+    {
+      "month": "2025-09",
+      "value": 99.764,
+      "wage_hourly": 36.7,
+      "restaurant_cpi": 385.451
+    },
+    {
+      "month": "2025-11",
+      "value": 100.125,
+      "wage_hourly": 37.0,
+      "restaurant_cpi": 387.202
+    },
+    {
+      "month": "2025-12",
+      "value": 99.489,
+      "wage_hourly": 37.02,
+      "restaurant_cpi": 389.889
+    },
+    {
+      "month": "2026-01",
+      "value": 99.689,
+      "wage_hourly": 37.15,
+      "restaurant_cpi": 390.471
+    },
+    {
+      "month": "2026-02",
+      "value": 99.696,
+      "wage_hourly": 37.27,
+      "restaurant_cpi": 391.706
+    },
+    {
+      "month": "2026-03",
+      "value": 99.669,
+      "wage_hourly": 37.35,
+      "restaurant_cpi": 392.652
+    },
+    {
+      "month": "2026-04",
+      "value": 99.603,
+      "wage_hourly": 37.41,
+      "restaurant_cpi": 393.546
+    },
+    {
+      "month": "2026-05",
+      "value": 99.517,
+      "wage_hourly": 37.49,
+      "restaurant_cpi": 394.728
+    },
+    {
+      "month": "2026-06",
+      "value": 99.554,
+      "wage_hourly": 37.59,
+      "restaurant_cpi": 395.633
+    },
+    {
+      "month": "2026-07",
+      "value": 99.378,
+      "wage_hourly": 37.64,
+      "restaurant_cpi": 396.859
+    },
+    {
+      "month": "2026-08",
+      "value": 99.442,
+      "wage_hourly": 37.76,
+      "restaurant_cpi": 397.868
+    },
+    {
+      "month": "2026-09",
+      "value": 99.346,
+      "wage_hourly": 37.81,
+      "restaurant_cpi": 398.783
+    }
+  ]
+}
