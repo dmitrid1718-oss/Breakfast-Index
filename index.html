@@ -39,10 +39,33 @@
         </div>
         <p class="method-note"><b>HOW WE CALCULATE.</b> A small basket. The same measurements. Over time. We compare a consistent breakfast price with hourly take-home earnings to estimate minutes worked per breakfast. Food, fuel, household costs and confidence are tracked as separate dated series. No synthetic historical points and no unvalidated composite score. The trend matters more than any single reading.</p>
       </section>
+
+      <section class="economy-section" aria-labelledby="economy-heading">
+        <div class="chart-heading"><div><div class="eyebrow">HISTORY BEFORE HEADLINES</div><h2 id="economy-heading">The numbers, over time.</h2><p>SOURCE-DATED OBSERVATIONS · NO GENERATED HISTORY</p></div><span class="status">4 VERIFIED SERIES</span></div>
+        <div class="economic-tabs" role="group" aria-label="Select economic data series">
+          <button type="button" data-series="sentiment" aria-pressed="true">Consumer sentiment</button>
+          <button type="button" data-series="conditions" aria-pressed="false">Current conditions</button>
+          <button type="button" data-series="gasoline" aria-pressed="false">Fuel</button>
+          <button type="button" data-series="wages" aria-pressed="false">Wages</button>
+        </div>
+        <div class="economic-heading"><div><h3 id="economic-title"></h3><p id="economic-date"></p></div><strong id="economic-now"></strong></div>
+        <div id="economic-plot" class="economic-plot" aria-live="polite"></div>
+        <p class="economic-caption" id="economic-source"></p><p class="economic-caption">DATA SOURCE: <a id="economic-source-link" target="_blank" rel="noopener noreferrer"></a></p>
+      </section>
+      <section class="basket-section" aria-labelledby="basket-heading">
+        <div><div class="eyebrow">THE SMALL BASKET</div><h2 id="basket-heading">How many mornings?</h2><p class="basket-copy">Start with an <strong>$8 illustrative breakfast basket</strong> (sandwich, side and coffee). Adjust the price and your earnings to see minutes worked and breakfasts within a weekly budget. The $8 basket is an assumption, <em>not</em> a verified national restaurant average.</p><div class="basket-inputs">
+          <label for="worker-wage">Hourly earnings <b id="wage-val"></b></label><input id="worker-wage" type="range" min="7.25" max="50" step=".25" value="20">
+          <label for="basket-price">Breakfast price <b id="price-val"></b></label><input id="basket-price" type="range" min="4" max="16" step=".5" value="8">
+          <label for="net-share">Estimated take-home share <b id="net-val"></b></label><input id="net-share" type="range" min="55" max="95" step="5" value="80">
+          <label for="budget-share">Take-home pay allocated to bought breakfasts <b id="budget-val"></b></label><input id="budget-share" type="range" min="1" max="10" step="1" value="5">
+        </div></div>
+        <div class="basket-result"><span>MINUTES OF TAKE-HOME PAY / BREAKFAST</span><strong id="minutes-result">—</strong><span>ESTIMATED BREAKFASTS IN A FIVE-DAY WEEK</span><strong id="days-result">—</strong><div id="days-bar" class="days-bar" aria-hidden="true"></div><p>Five purchased breakfasts would cost <b id="week-cost"></b> per week. Illustrative 40-hour workweek; household obligations are not modeled. These are scenarios, not measured national affordability rates.</p></div>
+      </section>
       <aside class="disclaimer" aria-label="Disclaimer"><span>SMALL PRINT</span><p>Breakfast Index is an independent experiment based on a limited sample of locations, not a nationally representative measure. It is not an official economic measure, an economic forecast, or financial advice. Readings may be incomplete or revised. Sentiment and confidence surveys are not direct affordability measures; their scales are not comparable. No affiliation with any restaurant or brand.</p></aside>
     </main>
     <footer><span>A USELESS INSTRUMENT. A USEFUL QUESTION.</span><a class="footer-link" href="https://uselessinstruments.com">© 2026 Useless Instruments LLC</a></footer>
   </div>
   <script src="/chart.js"></script>
+  <script src="/economic.js"></script>
 </body>
 </html>
