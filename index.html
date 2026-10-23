@@ -28,6 +28,27 @@
         <p class="main-index-method">A small, repeatable index—not a literal national breakfast receipt. We divide average private-sector hourly earnings by the official restaurant-food price index, then compare the result with January 2025. Higher means an hour of work buys more restaurant food. Updated when new BLS readings arrive; no estimates for missing months. <a href="https://fred.stlouisfed.org/series/CES0500000003" target="_blank" rel="noopener noreferrer">Wages ↗</a> · <a href="https://fred.stlouisfed.org/series/CUSR0000SEFV" target="_blank" rel="noopener noreferrer">Food prices ↗</a></p>
       </section>
 
+
+      <section class="prices-section" aria-labelledby="prices-title">
+        <div class="prices-heading">
+          <div><span class="eyebrow small-eyebrow">A SECOND MORNING SIGNAL</span><h2 id="prices-title">What breakfast costs</h2><p>U.S. average grocery prices, month by month.</p></div>
+          <span class="price-date" id="price-date">LOADING PRICE DATA</span>
+        </div>
+        <div class="price-cards" id="price-cards" aria-live="polite"></div>
+        <div class="price-chart-heading"><div><h3>Price changes, on one scale</h3><p>Each item starts at 100 in September 2021. The lines show how its price changed since.</p></div>
+          <div class="control-group price-range" role="group" aria-label="Price chart time range"><button type="button" data-price-range="5" aria-pressed="true">5 years</button><button type="button" data-price-range="10" aria-pressed="false">10 years</button></div>
+        </div>
+        <figure class="price-figure" aria-label="Indexed U.S. average grocery prices chart">
+          <div id="price-chart" class="price-chart" role="img" aria-label="Chart of grocery prices indexed to September 2021 equals 100"></div>
+          <div class="price-legend" id="price-legend" role="group" aria-label="Toggle items on the chart"></div>
+          <figcaption><span>INDEX · SEP 2021 = 100</span><span>MONTHLY · NOT SEASONALLY ADJUSTED</span></figcaption>
+        </figure>
+        <div class="price-method"><p><strong>How to read this:</strong> The cards show BLS U.S. city average prices for specific item definitions. The comparison chart resets each item to 100 in September 2021 so different units can be compared. It is not a cost-of-living index or a meal price.</p>
+          <p>BLS average prices come from prices collected for the CPI. Items have fixed definitions and units; coverage and publication can vary, and missing months are left blank. These are nominal prices, not adjusted for inflation elsewhere in the economy.</p>
+          <p class="price-sources">Sources: <a href="https://www.bls.gov/cpi/factsheets/average-prices.htm" target="_blank" rel="noopener noreferrer">BLS: Average Price Data</a> · <a href="https://www.bls.gov/cpi/additional-resources/average-price-publication-list.htm" target="_blank" rel="noopener noreferrer">BLS: published item definitions</a> · <a href="https://fred.stlouisfed.org/" target="_blank" rel="noopener noreferrer">FRED series data</a></p>
+        </div>
+      </section>
+
       <section class="sentiment-section" aria-labelledby="sentiment-title">
         <div class="sentiment-head"><div><span class="sentiment-eyebrow">THE HOUSEHOLD MOOD</span><h2 id="sentiment-title">Confidence changes the morning.</h2><p>Prices tell us what breakfast costs. Sentiment tells us whether households feel comfortable spending. These are separate measures—not substitutes for each other.</p></div><span class="sentiment-updated">LATEST AVAILABLE · OCT 22, 2026</span></div>
         <div class="sentiment-cards">
@@ -74,6 +95,7 @@
   </div>
   <script src="/chart.js"></script>
   <script src="/main-index.js"></script>
+  <script src="/prices.js"></script>
   <script src="/economic.js"></script>
 </body>
 </html>
