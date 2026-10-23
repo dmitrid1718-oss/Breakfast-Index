@@ -7,7 +7,7 @@
   if (!chart || !cards || !legend) return;
   let data;
   try {
-    const response = await fetch('/prices.json', {cache:'no-cache'});
+    const response = await fetch('/data/prices.json', {cache:'no-cache'});
     if (!response.ok) throw new Error('Price data unavailable');
     data = await response.json();
   } catch (_) {
