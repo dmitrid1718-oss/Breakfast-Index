@@ -2,7 +2,7 @@
 """Refresh sourced monthly breakfast purchasing-power history from FRED public CSV.
 No extrapolation; only matched BLS wage and restaurant CPI observation months.
 """
-import csv, io, json, urllib.request
+import csv, io, json, time, urllib.error, urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -18,8 +18,21 @@ UA = "BreakfastIndex-DataCollector/1.0 (public FRED CSV; cite BLS/FRED)"
 def observations(series_id):
     url = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=" + series_id
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/csv"})
-    with urllib.request.urlopen(req, timeout=35) as response:
-        decoded = response.read().decode("utf-8-sig")
+    # Retry transient FRED network timeouts; keep previously published data on failure.
+    decoded = None
+    for attempt in range(1, 5):
+        try:
+            with urllib.request.urlopen(req, timeout=50) as response:
+                decoded = response.read().decode("utf-8-sig")
+            if not decoded.strip():
+                raise RuntimeError(f"{series_id}: empty CSV response")
+            print(f"{series_id}: CSV downloaded (attempt {attempt})", flush=True)
+            break
+        except (TimeoutError, OSError, urllib.error.URLError, RuntimeError) as exc:
+            print(f"{series_id}: attempt {attempt}/4 failed: {exc}", flush=True)
+            if attempt == 4:
+                raise RuntimeError(f"{series_id}: official source unavailable after 4 tries") from exc
+            time.sleep(5 * attempt)
     values = {}
     for line in csv.DictReader(io.StringIO(decoded)):
         date = (line.get("DATE") or line.get("observation_date") or "").strip()
