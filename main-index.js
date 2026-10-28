@@ -50,6 +50,13 @@
  fetch('/data/purchasing-power.json',{cache:'no-store'}).then(res=>{if(!res.ok)throw Error('No readings');return res.json()}).then(data=>{
    readings=(data.points||[]).filter(p=>/^\d{4}-\d{2}$/.test(p.month)&&Number.isFinite(Number(p.value))&&Number(p.value)>0).sort((a,b)=>a.month.localeCompare(b.month));
    render();
+   fetch('/data/refresh-status.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('No status');return r.json()}).then(health=>{
+     const checked = new Date(health.checked_utc);
+     if(!Number.isFinite(checked.getTime())) return;
+     const label = checked.toLocaleString('en-US',{timeZone:'America/Chicago',month:'short',day:'numeric',hour:'numeric',minute:'2-digit'});
+     const stale = Date.now()-checked.getTime()>48*60*60*1000;
+     status.textContent = health.status==='ok' && !stale ? 'CHECKED '+label+' CT · MONTHLY DATA' : 'REFRESH DELAYED · LAST CHECK '+label+' CT';
+   }).catch(()=>{status.textContent += ' · REFRESH STATUS UNAVAILABLE';});
  }).catch(()=>{
    status.textContent='SOURCE UPDATE PENDING';
    plot.textContent='The first official monthly series is being collected. No modeled readings are shown.';

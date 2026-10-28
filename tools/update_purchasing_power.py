@@ -2,7 +2,7 @@
 """Refresh sourced monthly breakfast purchasing-power history from FRED public CSV.
 No extrapolation; only matched BLS wage and restaurant CPI observation months.
 """
-import csv, io, json, time, urllib.error, urllib.request
+import csv, io, json, math, time, urllib.error, urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -16,42 +16,60 @@ BASE_MONTH = "2025-01"
 UA = "BreakfastIndex-DataCollector/1.0 (public FRED CSV; cite BLS/FRED)"
 
 def observations(series_id):
-    url = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=" + series_id
+    # Try a bounded FRED download, then the original BLS publisher.
+    url = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=" + series_id + "&cosd=2025-01-01"
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Accept": "text/csv"})
-    # Retry transient FRED network timeouts; keep previously published data on failure.
-    decoded = None
-    for attempt in range(1, 5):
-        try:
-            with urllib.request.urlopen(req, timeout=50) as response:
-                decoded = response.read().decode("utf-8-sig")
-            if not decoded.strip():
-                raise RuntimeError(f"{series_id}: empty CSV response")
-            print(f"{series_id}: CSV downloaded (attempt {attempt})", flush=True)
-            break
-        except (TimeoutError, OSError, urllib.error.URLError, RuntimeError) as exc:
-            print(f"{series_id}: attempt {attempt}/4 failed: {exc}", flush=True)
-            if attempt == 4:
-                raise RuntimeError(f"{series_id}: official source unavailable after 4 tries") from exc
-            time.sleep(5 * attempt)
+    try:
+        with urllib.request.urlopen(req, timeout=15) as response:
+            decoded = response.read().decode("utf-8-sig")
+        values = {}
+        for line in csv.DictReader(io.StringIO(decoded)):
+            date = (line.get("DATE") or line.get("observation_date") or "").strip()
+            value = (line.get(series_id) or "").strip()
+            try: number = float(value)
+            except ValueError: continue
+            if date and math.isfinite(number) and number > 0:
+                values[date[:7]] = number
+        if BASE_MONTH not in values:
+            raise RuntimeError("CSV missing baseline")
+        print(f"{series_id}: FRED downloaded", flush=True)
+        return values
+    except (OSError, ValueError, RuntimeError) as exc:
+        print(f"{series_id}: FRED unavailable ({exc}); trying BLS", flush=True)
+
+    payload = json.dumps({"seriesid": [series_id], "startyear": "2025",
+                          "endyear": str(datetime.now(timezone.utc).year)}).encode()
+    req = urllib.request.Request("https://api.bls.gov/publicAPI/v1/timeseries/data/",
+                                 data=payload, headers={"User-Agent": UA,
+                                                       "Content-Type": "application/json"})
+    with urllib.request.urlopen(req, timeout=25) as response:
+        doc = json.load(response)
+    if doc.get("status") != "REQUEST_SUCCEEDED":
+        raise RuntimeError(f"BLS request failed: {doc.get('message')}")
     values = {}
-    for line in csv.DictReader(io.StringIO(decoded)):
-        date = (line.get("DATE") or line.get("observation_date") or "").strip()
-        value = (line.get(series_id) or "").strip()
-        if not date or value in {"", "."}:
-            continue
-        try:
-            number = float(value)
-        except ValueError:
-            continue
-        if number > 0:
-            values[date[:7]] = number
+    for series in doc.get("Results", {}).get("series", []):
+        if series.get("seriesID") != series_id: continue
+        for row in series.get("data", []):
+            period = row.get("period", "")
+            if period not in {f"M{i:02d}" for i in range(1, 13)}: continue
+            try: value = float(row["value"])
+            except (ValueError, KeyError): continue
+            if math.isfinite(value) and value > 0:
+                values[f"{row['year']}-{period[1:]}"] = value
     if BASE_MONTH not in values:
-        raise RuntimeError(f"{series_id} lacks baseline {BASE_MONTH}")
+        raise RuntimeError(f"{series_id}: BLS lacks baseline {BASE_MONTH}")
+    print(f"{series_id}: direct BLS downloaded", flush=True)
     return values
 
 def main():
     wages = observations(SERIES["wages"])
     cpi = observations(SERIES["restaurant_cpi"])
+    # Never replace a longer verified history with a truncated source response.
+    if OUT.exists():
+        old_points = json.loads(OUT.read_text()).get("points", [])
+        expected = {p["month"] for p in old_points}
+        if not expected.issubset(set(wages) & set(cpi)):
+            raise RuntimeError("Source response dropped previously published months")
     baseline = wages[BASE_MONTH] / cpi[BASE_MONTH]
     months = sorted(set(wages) & set(cpi))
     # Keep monthly history since the baseline; do not fill missing observations.
@@ -98,4 +116,16 @@ def main():
     print(f"Updated {len(points)} monthly points, latest {points[-1]['month']}: {points[-1]['value']}")
 
 if __name__ == "__main__":
-    main()
+    health_path = ROOT / "data" / "refresh-status.json"
+    health = {"checked_utc": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+    try:
+        main()
+        health["status"] = "ok"
+        health["latest_observation"] = json.loads(OUT.read_text())["latest_observation"]
+    except Exception as exc:
+        health["status"] = "failed"
+        health["message"] = "Official source unavailable; previous verified readings retained."
+        raise
+    finally:
+        health_path.parent.mkdir(parents=True, exist_ok=True)
+        health_path.write_text(json.dumps(health, indent=2) + "\n")
