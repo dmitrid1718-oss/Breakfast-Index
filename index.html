@@ -89,10 +89,27 @@
           <figcaption><span id="chart-view">WEEK · LINE</span><span id="chart-detail">MORNING ACTIVITY</span></figcaption>
         </figure>
       </section>
+
+<section id="gfi-panel" class="gfi-section" aria-labelledby="gfi-title">
+ <div class="gfi-top"><div><span class="gfi-kicker">NEW RESEARCH INSTRUMENT · PRIVATE DEVELOPMENT</span><h2 id="gfi-title">Global Fracture Index <span style="color:var(--accent)">GFI.</span></h2><p>Are cracks spreading from markets into credit, funding and household life? Two distinct lenses: financial stress and economic pressure.</p></div><span class="status">GFI 0.2 · EXPERIMENTAL</span></div>
+ <div class="gfi-subindex">
+  <div class="gfi-tile"><span>GLOBAL FINANCIAL FRACTURE · GFI / 100</span><strong>Not calculated yet</strong><p>Composite score intentionally withheld until the historical weighting and data quality have been tested.</p></div>
+  <div class="gfi-tile"><span>HOUSEHOLD ECONOMIC PRESSURE</span><strong>Calibration pending</strong><p>Auto loan stress, credit cards, inflation, housing costs and employment are tracked separately from market prices.</p></div>
+ </div>
+ <div class="gfi-charthead"><div><h3 style="margin:0 0 6px;font-weight:500">Financial stress since 2008</h3><p style="margin:0;font-size:12px">FEDERAL RESERVE WEEKLY SERIES · STLFSI4 · NOT GFI</p></div><span id="gfi-status" class="status" role="status">READING VERIFIED HISTORY</span></div>
+ <div class="chart-toolbar" style="margin:0;padding-bottom:10px"><div class="control-group" role="group" aria-label="Financial stress date range"><button type="button" data-gfi-range="all" aria-pressed="true">Since 2008</button><button type="button" data-gfi-range="2020" aria-pressed="false">Since 2020</button><button type="button" data-gfi-range="2024" aria-pressed="false">Since 2024</button></div><span id="gfi-last" class="main-index-value">—</span></div>
+ <div id="gfi-plot" class="gfi-plot" role="img" aria-label="Verified historical Federal Reserve financial stress index chart">Loading source observations…</div>
+ <div class="main-index-bottom"><span id="gfi-date">AWAITING VERIFIED OBSERVATIONS</span><span>ABOVE ZERO = ABOVE AVERAGE STRESS</span></div>
+ <p class="gfi-method">The chart above uses the <a target="_blank" rel="noopener noreferrer" href="https://fred.stlouisfed.org/series/STLFSI4">St. Louis Fed Financial Stress Index</a> for historical context. Its scale is <b>not</b> 0–100, and its readings are <b>not</b> our GFI values. The GFI composite stays unpublished until independently calibrated and validated against data available at each historical date. Source observations may be revised.</p>
+ <span class="gfi-kicker">GFI 0.2 · PROPOSED SIGNAL WEIGHTS</span>
+ <div class="gfi-signals"><div class="gfi-signal"><b>20% · CREDIT</b><span>Corporate spreads and defaults</span></div><div class="gfi-signal"><b>20% · LIQUIDITY</b><span>Funding-market pressure</span></div><div class="gfi-signal"><b>15% · CONSUMERS</b><span>Auto loans, cards, mortgages</span></div><div class="gfi-signal"><b>15% · BREADTH</b><span>Global equities and sectors</span></div><div class="gfi-signal"><b>10% · CURRENCIES</b><span>FX volatility and funding</span></div><div class="gfi-signal"><b>10% · INFLATION</b><span>Prices and expectations</span></div><div class="gfi-signal"><b>5% · EMPLOYMENT</b><span>Jobs and unemployment</span></div><div class="gfi-signal"><b>5% · CONTAGION</b><span>Cross-market propagation</span></div></div>
+ <p class="gfi-method">Prototype only. No alerts or predictions. A future severe signal will require multiple independently elevated dimensions, including credit or liquidity. Full historical replay must avoid look-ahead bias.</p>
+</section>
       <aside class="disclaimer" aria-label="Disclaimer"><span>SMALL PRINT</span><p>Breakfast Index is an independent research experiment. Its lead chart compares published average hourly earnings with restaurant-food consumer prices, normalized to January 2025. It does not measure actual breakfast purchases, household disposable income, or individual budgets. Consumer surveys and the separate morning-traffic pilot have different methods and are not combined into the lead measure. Source releases may be delayed or revised. Not an official economic measure, forecast, or financial advice; no restaurant affiliation.</p></aside>
     </main>
     <footer><span>A USELESS INSTRUMENT. A USEFUL QUESTION.</span><a class="footer-link" href="https://uselessinstruments.com">© 2026 Useless Instruments LLC</a></footer>
   </div>
+  <script src="/gfi.js"></script>
   <script src="/chart.js"></script>
   <script src="/main-index.js"></script>
   <script src="/prices.js"></script>
