@@ -2,7 +2,10 @@
 (() => {
  const root=document.getElementById('gfi-panel'); if(!root)return;
  const status=document.getElementById('gfi-status'), plot=document.getElementById('gfi-plot'),latest=document.getElementById('gfi-last'),date=document.getElementById('gfi-date');
- let history=[],range='all';
+ let history=[],range='all',usingImage=false;
+ const chartUrl=()=> 'https://fred.stlouisfed.org/graph/fredgraph.png?id=STLFSI4&cosd='+ (range==='all'?'2008-01-01':range+'-01-01');
+ function showFallback(){usingImage=true;plot.replaceChildren();const a=document.createElement('a');a.href='https://fred.stlouisfed.org/series/STLFSI4';a.target='_blank';a.rel='noopener noreferrer';a.style.cssText='display:block;width:100%';const img=document.createElement('img');img.alt='Federal Reserve STLFSI4 financial stress chart from 2008 to latest available date';img.src=chartUrl();img.loading='eager';img.style.cssText='display:block;width:100%;height:auto;min-height:220px;background:#fff;border-radius:4px';img.onerror=()=>{plot.textContent='FRED chart temporarily unavailable. Open the Federal Reserve source link to see latest observations.'};a.append(img);plot.append(a);latest.textContent='FRED';date.textContent='PUBLIC FEDERAL RESERVE CHART · CLICK TO VIEW SOURCE';}
+
  const fmt=n=>n.toFixed(2);
  function render(){
   plot.replaceChildren();
@@ -22,10 +25,10 @@
   const end=points[points.length-1],dot=elem('circle',{cx:x(points.length-1),cy:y(end.value),r:4,fill:'#f3763c'});dot.append(elem('title',{},end.date+' · '+fmt(end.value)));svg.append(dot);plot.append(svg);
   latest.textContent=fmt(history[history.length-1].value);date.textContent='LATEST VERIFIED WEEK · '+history[history.length-1].date;
  }
- document.querySelectorAll('[data-gfi-range]').forEach(b=>b.addEventListener('click',()=>{range=b.dataset.gfiRange;document.querySelectorAll('[data-gfi-range]').forEach(n=>n.setAttribute('aria-pressed',String(n===b)));render();}));
+ document.querySelectorAll('[data-gfi-range]').forEach(b=>b.addEventListener('click',()=>{range=b.dataset.gfiRange;document.querySelectorAll('[data-gfi-range]').forEach(n=>n.setAttribute('aria-pressed',String(n===b)));if(usingImage)showFallback();else render();}));
  fetch('/data/gfi-stress.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Historical feed unavailable');return r.json()}).then(data=>{
   history=(data.points||[]).filter(x=>/^\d{4}-\d{2}-\d{2}$/.test(x.date)&&Number.isFinite(Number(x.value))).map(x=>({date:x.date,value:Number(x.value)})).sort((a,b)=>a.date.localeCompare(b.date));
   if(!history.length)throw Error('No verified observations');
   status.textContent='FED SERIES · '+history.length+' WEEKS';render();
- }).catch(()=>{status.textContent='DATA UPDATE PENDING';plot.textContent='Verified historical data are not available yet. Use the Federal Reserve source link below; no substitute or synthetic observations are shown.';});
+ }).catch(()=>{status.textContent='FEDERAL RESERVE · LIVE CHART';showFallback();});
 })();
