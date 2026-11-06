@@ -6,7 +6,7 @@
   "frequency": "monthly",
   "description": "Average private-sector hourly earnings divided by CPI food away from home, normalized to 100 in January 2025; not a national breakfast menu-price index or household disposable income measure.",
   "latest_observation": "2026-09",
-  "updated_utc": "2026-10-22T15:06:26+00:00",
+  "updated_utc": "2026-11-06T20:56:59+00:00",
   "source": [
     {
       "id": "CES0500000003",
@@ -136,8 +136,8 @@
     },
     {
       "month": "2026-09",
-      "value": 99.346,
-      "wage_hourly": 37.81,
+      "value": 99.477,
+      "wage_hourly": 37.86,
       "restaurant_cpi": 398.783
     }
   ]
