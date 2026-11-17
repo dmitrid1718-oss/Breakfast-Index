@@ -19,3 +19,13 @@ header{justify-content:flex-end;min-height:80px}.footer-link{color:var(--muted);
 
 /* GFI research panel — inherits Breakfast Index theme */
 .gfi-section{border-top:2px solid var(--accent);padding:28px;background:#1d1f21;margin-top:28px}.gfi-section h2{font-size:clamp(24px,3vw,34px);font-weight:500;letter-spacing:-.8px;margin:10px 0}.gfi-section p{color:var(--muted);line-height:1.6}.gfi-top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap}.gfi-kicker{font:700 12px 'Courier New',monospace;letter-spacing:1.4px;color:var(--accent)}.gfi-subindex{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:22px 0}.gfi-tile{padding:18px;border:1px solid var(--line);border-radius:6px;background:#191b1d}.gfi-tile strong{display:block;font-size:17px;margin:10px 0}.gfi-tile span{font:12px 'Courier New',monospace;color:var(--muted)}.gfi-tile p{font-size:13px;margin:8px 0 0}.gfi-charthead{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:24px 0 12px}.gfi-plot{min-height:250px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:14px}.gfi-plot svg{display:block;width:100%;height:auto}.gfi-method{font-size:13px;border-top:1px solid var(--line);padding-top:16px;margin-top:18px}.gfi-method a{color:#f2a27d}.gfi-signals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:16px 0}.gfi-signal{border:1px solid #3a3d3e;padding:12px;font-size:12px}.gfi-signal b{display:block;color:#f3763c;margin-bottom:6px}.gfi-signal span{color:var(--muted)}@media(max-width:760px){.gfi-section{padding:20px 16px}.gfi-subindex{grid-template-columns:1fr}.gfi-signals{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Editorial labels use prose sizing, separate from headline statistics. */
+.sentiment-card p strong{font-size:inherit;font-weight:700;letter-spacing:normal;line-height:inherit}
+#morning-brief .sentiment-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+#morning-brief .sentiment-card{gap:14px}
+#morning-brief .sentiment-card h3{font-size:20px;line-height:1.35;font-weight:600;letter-spacing:-.3px;margin:0 0 2px}
+#morning-brief .sentiment-card p{font-size:15px;line-height:1.65;color:var(--muted);margin:0}
+#morning-brief .sentiment-card p strong{color:var(--text,#f0efeb)}
+#morning-brief .sentiment-card a{padding-top:8px}
+@media(max-width:850px){#morning-brief .sentiment-cards{grid-template-columns:1fr}}
