@@ -11,6 +11,7 @@ Breakfast Index is an independent economic-observation experiment by Useless Ins
 - **Household mood:** consumer sentiment and current-conditions measurements, with source dates.
 - **Affordability scenarios:** illustrative breakfast budget calculator, not a representative household estimate.
 - **GFI (Global Fracture Index):** an experimental composite calculated from public economic series, with monthly history from January 2008. Its separate financial-stress and household-pressure views are research instruments, not validated predictors or investment signals.
+- **Housing stress watch:** a source-dated panel for builder sentiment, pending-home-sale activity and building-permit verification. It is deliberately separate from GFI; weaker housing activity is not presented as proof of a house-price crash or recession.
 - **Morning activity pilot:** an optional camera-based vehicle-count experiment; shown separately from the economic indicators and not included in GFI.
 
 ## GFI research methodology and limitations
